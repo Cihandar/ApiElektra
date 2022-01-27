@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ApiElektra.Application;
 using ApiElektra.Model;
@@ -70,5 +71,7 @@ namespace ApiElektra.Application.Command
             JSONString = JsonConvert.SerializeObject(dataTable);
             return JSONString;
         }
+
+ 
     }
 }

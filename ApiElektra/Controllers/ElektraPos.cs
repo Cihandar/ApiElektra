@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiElektra.Application;
+using System.Text;
+using ApiElektra.Model;
+
 namespace ApiElektra.Controllers
 {
     [ApiController]
@@ -17,14 +20,14 @@ namespace ApiElektra.Controllers
             _databaseOp = databaseOp;
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-        public async Task<IActionResult> ExecuteReader(string Query,string userName,string password)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> ExecuteReader(ParamModel model)
         {
-            var loginResult =await _databaseOp.LoginUser(userName, password);
+            var loginResult =await _databaseOp.LoginUser(model.userName, model.password);
 
             if(loginResult.Status)
             { 
-            var result =await _databaseOp.ExecuteReader(Query);
+            var result =await _databaseOp.ExecuteReader(model.Query);
 
             return Json(result);
             }else
